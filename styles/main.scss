@@ -1,1 +1,60 @@
 @import 'formPage.scss';
+@import 'ordersPage.scss';
+
+.drawer{
+    transition-duration: 200ms;
+    position: absolute;
+    font-size: 30px;
+    top: 10px;
+    left: 10px;
+}
+
+.drawer:hover{
+    transition-duration: 200ms;
+    color: #4E59A7;
+    cursor: pointer;
+    font-size: 40px;
+}
+
+.menu-profile-icon{
+    font-size: 40px;
+}
+
+.menu-icon{
+    font-size: 30px;
+    color: #4E59A7;
+}
+
+.menu-links{
+    text-decoration: none;
+    color: #4E59A7;
+    font-size: 24px;
+    position: relative;
+    top: 4px;
+    left: 10px;
+}
+
+.menu-links:hover{
+    color: #373f81;
+}
+
+.menu-link-container{
+    line-height: 50px;
+    padding-left: 20px;
+    padding-bottom: 5px;
+    border-radius: 25px;
+}
+.menu-link-container:hover{
+    transition-duration: 300ms;
+    cursor: pointer;
+    background-color: rgb(247, 247, 247);
+}
+
+.box{
+    background-color: white;
+    min-height: 500px;
+    border-radius: 15px;
+    box-shadow: 10px 10px 42px -7px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 10px 10px 42px -7px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 42px -7px rgba(0,0,0,0.75);
+}
