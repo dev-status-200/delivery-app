@@ -32,7 +32,7 @@ const Orders = ({orderData}) => {
                     {
                         orderList.map((order, index)=>{
                             return(
-                            <tr>
+                            <tr key={index}>
                             <td>{index+1}</td>
                             <td>{order.name}</td>
                             <td>JI-{order.invoice}</td>
