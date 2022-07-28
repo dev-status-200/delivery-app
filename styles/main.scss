@@ -1,19 +1,9 @@
 @import 'formPage.scss';
 @import 'ordersPage.scss';
 
-.drawer{
-    transition-duration: 200ms;
-    position: absolute;
-    font-size: 30px;
-    top: 10px;
-    left: 10px;
-}
-
-.drawer:hover{
-    transition-duration: 200ms;
-    color: #4E59A7;
-    cursor: pointer;
-    font-size: 40px;
+html, body{
+    //height:100%!important;
+    font-family: 'Alata', sans-serif!important;
 }
 
 .menu-profile-icon{
@@ -52,9 +42,144 @@
 
 .box{
     background-color: white;
-    min-height: 500px;
-    border-radius: 15px;
-    box-shadow: 10px 10px 42px -7px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 10px 10px 42px -7px rgba(0,0,0,0.75);
-    -moz-box-shadow: 10px 10px 42px -7px rgba(0,0,0,0.75);
+    min-height: 20px;
+    border: 1px solid rgba(233, 233, 233, 0.719);
+    border-radius: 10px;
+
+    box-shadow: 4px 4px 18px -12px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 4px 4px 18px -12px rgba(0,0,0,0.75);
+    -moz-box-shadow: 4px 4px 18px -12px rgba(0,0,0,0.75);
+}
+
+.view-icon{
+    color: silver;
+    cursor: pointer;
+    font-size: 15px;
+}
+.view-icon:hover{
+    transition-duration: 200ms;
+    color: #373f81;
+}
+
+.edit-icon{
+    color: silver;
+    cursor: pointer;
+    font-size: 15px;
+}
+.edit-icon:hover{
+    transition-duration: 200ms;
+    color: #c08d40;
+}
+
+.delete-icon{
+    color: silver;
+    cursor: pointer;
+    font-size: 14px;
+}
+.delete-icon:hover{
+    transition-duration: 200ms;
+    color: #d34329;
+    
+}
+.vertical-seperator{
+    color: silver;
+    font-size: 10px;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+.header{
+    background-color: #F7F8FA;
+    border-bottom: 1px solid #dadadab6;
+    min-height: 55px;
+    color: white;
+    position: absolute;
+    width: 100%;
+}
+.drawer-icon{
+    transition-duration: 200ms;
+    color: #4E59A7;
+    font-size: 30px;
+    margin-top: 12px;
+    margin-left: 10px;
+}
+
+.drawer-icon:hover{
+    transition-duration: 200ms;
+    color: #4E59A7;
+    cursor: pointer;
+    font-size: 40px;
+}
+
+.heading{
+    color: #6B7B9A;
+    font-weight: 800;
+    font-size: 20px;
+}
+.heading-font-thin{
+    color: #6B7B9A;
+    font-weight: 100;
+    font-size: 20px;
+    margin-right: 15px;
+    margin-bottom: 8px;
+}
+.heading-font{
+    color: #6B7B9A;
+    font-weight: 800;
+    font-size: 20px;
+    margin-right: 10px;
+    margin-bottom: 11px;
+}
+.medium-font{
+    color: #6B7B9A;
+    font-weight: 800;
+    font-size: 16px;
+}
+.small-font{
+    color: #6B7B9A;
+    font-weight: 500;
+    font-size: 12px;
+}
+.vertical-center-table>tr>td{
+    padding-bottom: 0px;
+    padding-top: 12px;
+}
+.purple-btn{
+    background-color: #4E59A7;
+    border: none;
+    border-radius: 35px;
+    padding: 10px 30px 10px 30px;
+    color: white;
+
+    box-shadow: 10px 10px 24px -15px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 10px 10px 24px -15px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 24px -15px rgba(0,0,0,0.75);
+}
+.purple-btn:hover{
+    transition-duration: 300ms;
+    background-color: #353c70;
+}
+.purple-btn:disabled{
+    background-color: #4e58a759;
+}
+body > div > div > div.ant-modal-wrap > div > div.ant-modal-content > div > div > div > div.m-3.col > div > div.d-flex.my-3.align-items-center.justify-content-center > button.btn.btn-dark.btn-sm.mt-1{
+    background-color: #4E59A7;
+    border: none;
+    border-radius: 35px;
+    padding: 10px 30px 10px 30px;
+    color: white;
+
+    box-shadow: 10px 10px 24px -15px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 10px 10px 24px -15px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 24px -15px rgba(0,0,0,0.75);
+}
+body > div > div > div.ant-modal-wrap > div > div.ant-modal-content > div > div > div > div.m-3.col > div.d-flex.my-3.align-items-center.justify-content-center > button{
+    background-color: #4E59A7;
+    border: none;
+    border-radius: 35px;
+    padding: 10px 30px 10px 30px;
+    color: white;
+
+    box-shadow: 10px 10px 24px -15px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 10px 10px 24px -15px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 24px -15px rgba(0,0,0,0.75);
 }

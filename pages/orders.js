@@ -1,11 +1,10 @@
 import React from 'react'
-import { FormGroup } from 'react-bootstrap'
-import Orders from '/components/Layouts/Orders'
+import Orders from '/components/Layouts/Orders/'
 import axios from 'axios'
 
 const orders = ({orderData}) => {
   return (
-    <div>
+    <div className="order-styles">
       <Orders orderData={orderData} />
     </div>
   )

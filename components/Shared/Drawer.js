@@ -12,7 +12,9 @@ const Drawer = () => {
     const [show, setShow] = useState(false);
   return (
     <div>
-       <AiOutlineAlignLeft className='drawer' onClick={()=>setShow(true)} />
+      <div className='header'>
+       <AiOutlineAlignLeft className='drawer-icon' onClick={()=>setShow(true)} />
+      </div>
       <Offcanvas show={show} onHide={()=>setShow(false)}>
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>
