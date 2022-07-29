@@ -12,6 +12,9 @@ import ShowInfo from './ShowInfo';
 import CreateNewOrder from './CreateNewOrder';
 import Edit from './Edit';
 
+import aos from 'aos'
+import 'aos/dist/aos.css'
+
 const Orders = ({orderData}) => {
 
     const { confirm } = Modal;
@@ -25,6 +28,7 @@ const Orders = ({orderData}) => {
 
     useEffect(()=>{
         setOrderList(orderData);
+        aos.init({duration:500});
     }, []);
 
     const showConfirm = () => {
@@ -53,7 +57,7 @@ const Orders = ({orderData}) => {
         setOrderList(tempState);
     }
   return (
-    <div className='layout'  style={{paddingTop:20}}>
+    <div className='layout' data-aos="fade-in" style={{paddingTop:20}}>
         <Container className='py-5'>
             <Row>
             <Col>
@@ -158,7 +162,7 @@ const Orders = ({orderData}) => {
             <ShowInfo view={view}/>
             {/* Modal For Creating Records */}
         </Modal>
-            {/* Modal For Creating Records */}
+        {/* Modal For Creating Records */}
         <Modal
             visible={createVisible}
             onOk={() => setCreateVisible(false)}
@@ -168,7 +172,7 @@ const Orders = ({orderData}) => {
         >
             <CreateNewOrder func={appendOrder} />
         </Modal>
-            {/* Modal For Editing Records */}
+        {/* Modal For Editing Records */}
         <Modal
             visible={editVisible}
             onOk={() => setEditVisible(false)}

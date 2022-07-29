@@ -1,11 +1,25 @@
 import React from 'react'
-import GenerateOrder from '/components/Layouts/GenerateOrder'
-
+import { Spinner, Row, Col, Container } from 'react-bootstrap'
+import Router from 'next/router'
 const home = () => {
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      Router.push('/orders')
+    }, 500);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <>
-      <GenerateOrder/>
-    </>
+      <Container>
+        <Row>
+          <Col>
+            <div className='loader-spinner'>
+              <Spinner animation="border" size='xl' role="status" />
+            </div>
+          </Col>
+        </Row>
+      </Container>
   )
 }
 
