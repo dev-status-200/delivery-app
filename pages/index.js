@@ -1,7 +1,7 @@
 import React from 'react'
 import { Spinner, Row, Col, Container } from 'react-bootstrap'
 import Router from 'next/router'
-const home = () => {
+const Home = () => {
 
   React.useEffect(() => {
     const timer = setTimeout(() => {
@@ -23,4 +23,4 @@ const home = () => {
   )
 }
 
-export default home
+export default Home
