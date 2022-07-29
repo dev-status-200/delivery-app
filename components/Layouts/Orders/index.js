@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Container, Row, Col, Table } from 'react-bootstrap'
-import { AiFillDelete, AiFillEye, AiFillEdit } from 'react-icons/ai'
+import { AiFillDelete, AiFillEye, AiFillEdit, AiOutlineExclamationCircle, AiOutlineFileDone } from 'react-icons/ai'
 import { FaClipboardList } from 'react-icons/fa'
 
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { Modal } from 'antd';
+
+import { RiEBike2Line } from 'react-icons/ri'
 
 import ShowInfo from './ShowInfo';
 import CreateNewOrder from './CreateNewOrder';
@@ -76,7 +78,8 @@ const Orders = ({orderData}) => {
                     <th>Invoice{" "}No.</th>
                     <th>Job{" "}No.</th>
                     <th>Machine</th>
-                    <th>Net{" "}Balance</th>
+                    <th>Balance</th>
+                    <th>Status</th>
                     <th>Barcode</th>
                     <th>Modify</th>
                     </tr>
@@ -92,6 +95,26 @@ const Orders = ({orderData}) => {
                 <td>JI-{order.job}</td>
                 <td>{order.machineNo}</td>
                 <td>{order.balance}</td>
+                <td>
+                    {order.status=='pending'&& 
+                        <>
+                            <span><AiOutlineExclamationCircle className='pending-icon' /></span>
+                            <span className='mx-1 pending-text'>Pending</span>
+                        </>
+                    }
+                    {order.status=='pipeline'&& 
+                        <>
+                            <span><RiEBike2Line className='pipeline-icon' /></span>
+                            <span className='mx-1 pipeline-text'>On The Way!</span>
+                        </>
+                    }
+                    {order.status=='complete'&& 
+                        <>
+                            <span><AiOutlineFileDone className='complete-icon' /></span>
+                            <span className='mx-1 complete-text'>Completed!</span>
+                        </>
+                    }
+                </td>
                 <td>{order.code}</td>
                 <td>
                 <p style={{whiteSpace:'nowrap'}}>
@@ -104,9 +127,12 @@ const Orders = ({orderData}) => {
                     <span className='vertical-seperator'> | </span>
                 <span>
                 <AiFillEdit className='edit-icon' onClick={()=>{
-                    console.log(order);
-                    setEditValues(order);
-                    setEditVisible(true);
+                    if(order.status=='pending'){
+                        setEditValues(order);
+                        setEditVisible(true);
+                    }else{
+                        alert('Live Orders cannot be changed');
+                    }
                 }} />
                 </span>
                     <span className='vertical-seperator'> | </span>

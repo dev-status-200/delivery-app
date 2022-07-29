@@ -183,3 +183,30 @@ body > div > div > div.ant-modal-wrap > div > div.ant-modal-content > div > div 
     -webkit-box-shadow: 10px 10px 24px -15px rgba(0,0,0,0.75);
     -moz-box-shadow: 10px 10px 24px -15px rgba(0,0,0,0.75);
 }
+
+.pending-icon{
+    color: silver;
+    font-size: 20px;
+    padding-bottom: 4px;
+}
+.pending-text{
+    color: silver;
+}
+
+.pipeline-icon{
+    color: #c08d40;
+    font-size: 20px;
+    padding-bottom: 4px;
+}
+.pipeline-text{
+    color: #c08d40;
+}
+
+.complete-icon{
+    color: green;
+    font-size: 20px;
+    padding-bottom: 4px;
+}
+.complete-text{
+    color: green;
+}

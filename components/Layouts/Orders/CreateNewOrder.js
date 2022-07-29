@@ -46,34 +46,45 @@ const CreateNewOrder = (props) => {
         <Row className='mt-4'>
             <Col md={6} xs={12}>
                 <Form onSubmit={handleSubmit}>
-                <div className='m-3'>
-                <span className='heading-font'>Name :</span>
-                <span className='heading-font-thin' style={{float:'right'}}>
-                    <Form.Control type="text" required value={name} onChange={(e)=>setName(e.target.value)} />
-                </span>
-                <hr/>
-                <span className='heading-font'>	Invoice No :</span>
-                <span className='heading-font-thin' style={{float:'right'}}>
-                    <Form.Control type="text" required value={invoice} onChange={(e)=>setInvoice(e.target.value)} />
-                </span>
-                <hr/>
-                <span className='heading-font'>Job No :</span>
-                <span className='heading-font-thin' style={{float:'right'}}>
-                    <Form.Control type="text" required value={job} onChange={(e)=>setJob(e.target.value)} />
-                </span>
-                <hr/>
-                <span className='heading-font'>Machine No :</span>
-                <span className='heading-font-thin' style={{float:'right'}}>
-                    <Form.Control type="text" required value={machineNo} onChange={(e)=>setMachineNo(e.target.value)} />
-                </span>
-                <hr/>
-                <span className='heading-font'>Balance :</span>
-                <span className='heading-font-thin' style={{float:'right'}}>
-                    <Form.Control type="text" required value={balance} onChange={(e)=>setBalance(e.target.value)} />
-                </span>
-                <hr/>
-                <button className='purple-btn' type='submit' disabled={show==true?true:false}>Submit</button>
-                </div>
+                  <Row className='py-4'>
+                    <Col md={5} xs={4}><div className='heading-font'>Name :</div></Col>
+                    <Col md={1} xs={2} style={{padding:'6px 0px 0px 20px'}}></Col>
+                    <Col md={6} xs={6}>
+                      <div className='heading-font-thin'>
+                      <Form.Control type="text" required value={name} onChange={(e)=>setName(e.target.value)} />
+                      </div>
+                    </Col>
+                    <Col md={5} xs={4}><div className='heading-font'>Invoice No :</div></Col>
+                    <Col md={1} xs={2} style={{padding:'6px 0px 0px 20px'}}>JI-</Col>
+                    <Col md={6} xs={6}>
+                      <div className='heading-font-thin'>
+                      <Form.Control type="text" required value={invoice} onChange={(e)=>setInvoice(e.target.value)} />
+                      </div>
+                    </Col>
+                    <Col md={5} xs={4}><div className='heading-font'>Job No :</div></Col>
+                    <Col md={1} xs={2} style={{padding:'6px 0px 0px 20px'}}>JL-</Col>
+                    <Col md={6} xs={6}>
+                      <div className='heading-font-thin'>
+                      <Form.Control type="text" required value={job} onChange={(e)=>setJob(e.target.value)} />
+                      </div></Col>
+                    <Col md={5} xs={4}><div className='heading-font'>Machine No :</div></Col>
+                    <Col md={1} xs={2} style={{padding:'6px 0px 0px 20px'}}></Col>
+                    <Col md={6} xs={6}>
+                      <div className='heading-font-thin'>
+                      <Form.Control type="text" required value={machineNo} onChange={(e)=>setMachineNo(e.target.value)} />
+                      </div>
+                    </Col>
+                    <Col md={5} xs={4}><div className='heading-font'>Balance :</div></Col>
+                    <Col md={1} xs={2} style={{padding:'6px 0px 0px 20px'}}></Col>
+                    <Col md={6} xs={6}>
+                      <div className='heading-font-thin'>
+                      <Form.Control type="text" required value={balance} onChange={(e)=>setBalance(e.target.value)} />
+                      </div>
+                    </Col>
+                    <Col>
+                      <button className='purple-btn mx-4' style={{float:'right'}} type='submit' disabled={show==true?true:false}>Submit</button>
+                    </Col>
+                  </Row>
                 </Form>
             </Col>
             <Col className='m-3' style={{border:'1px solid silver'}}>

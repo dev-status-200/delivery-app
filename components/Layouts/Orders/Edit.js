@@ -10,20 +10,13 @@ const Edit = ({editValues, updateOrder}) => {
     const inputRef = useRef(null);
 
     const [show, setShow] = useState(false);
-    const [id, setId] = useState('');
-    const [code, setCode] = useState('');
-    const [name, setName] = useState('');
-    const [invoice, setInvoice] = useState('');
-    const [job, setJob] = useState('');
-    const [machineNo, setMachineNo] = useState('');
-    const [balance, setBalance] = useState('');
 
     const [state, setState] = useSetState({
         values:{id:'', name:'', code:'', invoice:'', job:'', machineNo:'', balance:''}
     })
     
     useEffect(() => {
-        console.log(editValues)
+        //console.log(editValues)
         setState({
             id:editValues.id,
             name:editValues.name,
@@ -63,7 +56,9 @@ const Edit = ({editValues, updateOrder}) => {
                     job:state.job,
                     machineNo:state.machineNo,
                     balance:state.balance,
-                    code:state.job+'|'+state.invoice
+                    code:state.job+'|'+state.invoice,
+                    status:'pending',
+                    active:1
                 })
               }
           })
