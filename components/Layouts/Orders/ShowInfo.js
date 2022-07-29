@@ -3,7 +3,7 @@ import { Row, Col } from 'react-bootstrap'
 import ReactToPrint from 'react-to-print';
 import Barcode from "react-barcode";
 
-const showInfo = ({view}) => {
+const ShowInfo = ({view}) => {
     const inputRef = useRef(null);
 
     useEffect(() => {
@@ -48,4 +48,4 @@ const showInfo = ({view}) => {
   )
 }
 
-export default showInfo
+export default ShowInfo
