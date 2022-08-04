@@ -58,7 +58,7 @@ const FileUpload = () => {
                             <span>{"("}{x.Job}{")"} </span>
                             <span>{"("}{x.GD}{")"} </span>
                         </div>
-                        <div>Rs. {x.Amount}</div>
+                        <div>{x.Amount}</div>
                         <Barcode value={`${x.Invoice}`} />
                         <hr/>
                     </div>
