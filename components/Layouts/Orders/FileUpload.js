@@ -15,10 +15,9 @@ const FileUpload = () => {
         if(excelFile.length!=0){
             reader();
         }else{
-            setExcelFile([])
+            setExcelFile([]);
         }
     }, [excelFile])
-    
 
     const reader = async() => {
         const [file] = excelFile;
@@ -38,28 +37,33 @@ const FileUpload = () => {
     
   return (
     <div>
-      <input type="file" onChange={(e)=>setExcelFile(e.target.files)} files={excelFile} />
+      <div className='mt-5'>
+        <div style={{textAlign:'center'}}>
+        <input type="file" style={{border:'1px solid silver', padding:100}} onChange={(e)=>setExcelFile(e.target.files)} files={excelFile} /><br/>
       <ReactToPrint
         content={() =>inputRef}
-        trigger={() => <button className="btn btn-dark btn-sm mt-1">Print to PDF!</button>}
+        trigger={() => <button className="purple-btn mt-3">Print to PDF!</button>}
         />
+        </div>
+      </div>
       <div className='my-5' ref={(response) => (inputRef = response)}>
         <div style={{textAlign:'center'}}>
             {
-                fileData.map((x,i)=>{
-                    return(
-                        <div className='mx-3 my-2' key={i} style={{display:'inline-block', width:230}}>
-                            <h5>{x.Client}</h5>
-                            <div style={{fontSize:13}}>
-                                <span>{"("}{x.Invoice}{")"} </span>
-                                <span>{"("}{x.Job}{")"} </span>
-                                <span>{"("}{x.GD}{")"} </span>
-                            </div>
-                            <div>Rs. {x.Amount}</div>
-                            <Barcode value={`${x.Job}`} />
+            fileData.map((x,i)=>{
+                return(
+                    <div className='mx-3' key={i} style={{display:'inline-block', width:230}}>
+                        <h5 style={{maxWidth:250}}>{x.Client}</h5>
+                        <div style={{fontSize:13}}>
+                            <span>{"("}{x.Invoice}{")"} </span>
+                            <span>{"("}{x.Job}{")"} </span>
+                            <span>{"("}{x.GD}{")"} </span>
                         </div>
-                    )
-                })
+                        <div>Rs. {x.Amount}</div>
+                        <Barcode value={`${x.Invoice}`} />
+                        <hr/>
+                    </div>
+                )
+            })
             }
           </div>
         </div>
