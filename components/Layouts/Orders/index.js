@@ -14,6 +14,7 @@ import Edit from './Edit';
 
 import aos from 'aos'
 import 'aos/dist/aos.css'
+import FileUpload from './FileUpload';
 
 const Orders = ({orderData}) => {
 
@@ -22,6 +23,7 @@ const Orders = ({orderData}) => {
     const [ viewVisible, setViewVisible ] = useState(false);
     const [ createVisible, setCreateVisible ] = useState(false);
     const [ editVisible, setEditVisible ] = useState(false);
+    const [ fileVisible, setFileVisible ] = useState(false);
 
     const [view, setView] = useState({})
     const [editValues, setEditValues] = useState({})
@@ -57,8 +59,8 @@ const Orders = ({orderData}) => {
         setOrderList(tempState);
     }
   return (
-    <div className='layout' data-aos="fade-in" style={{paddingTop:20}}>
-        <Container className='py-5'>
+    <div className='layout'  style={{paddingTop:20}}>
+        <Container className='py-5' data-aos="fade-in">
             <Row>
             <Col>
                 <span>
@@ -66,11 +68,15 @@ const Orders = ({orderData}) => {
                 </span>
                 <span className='heading'>Orders Page</span>
             </Col>
-            <Col>
+            <Col xs={'auto'}>
                 <button 
                     className='purple-btn' style={{float:'right'}}
                     onClick={()=>setCreateVisible(true)}
                 >Create New</button>
+                <button 
+                    className='purple-btn mx-2' style={{float:'right'}}
+                    onClick={()=>setFileVisible(true)}
+                >Upload File</button>
             </Col>
             </Row>
             <div className='box my-3 p-4'>
@@ -181,6 +187,16 @@ const Orders = ({orderData}) => {
             footer={false}
         >
             {editVisible && <Edit editValues={editValues} updateOrder={updateOrder} />}
+        </Modal>
+        {/* Modal For Uploading File */}
+        <Modal
+            visible={fileVisible}
+            onOk={() => setFileVisible(false)}
+            onCancel={() => setFileVisible(false)}
+            width={1000}
+            footer={false}
+        >
+            {fileVisible && <FileUpload/>}
         </Modal>
     </div>
   )

@@ -16,7 +16,6 @@ const Edit = ({editValues, updateOrder}) => {
     })
     
     useEffect(() => {
-        //console.log(editValues)
         setState({
             id:editValues.id,
             name:editValues.name,
