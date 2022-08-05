@@ -1,6 +1,7 @@
 import React from 'react'
 import { Spinner, Row, Col, Container } from 'react-bootstrap'
 import Router from 'next/router'
+import Test from '../components/Layouts/Test'
 const Home = () => {
 
   React.useEffect(() => {
@@ -11,6 +12,9 @@ const Home = () => {
   }, []);
 
   return (
+    // <>
+    // <Test/>
+    // </>
       <Container>
         <Row>
           <Col>
