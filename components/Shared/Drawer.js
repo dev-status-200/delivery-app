@@ -5,6 +5,7 @@ import { AiOutlineAlignLeft, AiOutlineAppstoreAdd } from "react-icons/ai";
 import { FaUserCircle } from "react-icons/fa"
 import { BsCardList } from 'react-icons/bs'
 import { RiPlayListAddLine } from 'react-icons/ri'
+import { FiUsers } from 'react-icons/fi'
 import Link from 'next/link'
 
 const Drawer = () => {
@@ -32,7 +33,7 @@ const Drawer = () => {
             <BsCardList className='menu-icon' /><span><Link href="/orders"><a className="menu-links">Orders</a></Link></span>
         </div>
         <div className='menu-link-container'>
-            <AiOutlineAppstoreAdd className='menu-icon' /><span><Link href="/"><a className="menu-links">Generate Order</a></Link></span>
+            <FiUsers className='menu-icon' /><span><Link href="/clients"><a className="menu-links">Clients</a></Link></span>
         </div>
         </Offcanvas.Body>
       </Offcanvas>

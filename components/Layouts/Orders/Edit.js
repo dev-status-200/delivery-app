@@ -5,17 +5,18 @@ import Barcode from "react-barcode";
 import axios from 'axios'
 import { useSetState } from 'react-use';
 
-const Edit = ({editValues, updateOrder}) => {
+const Edit = ({editValues, updateOrder, clientData}) => {
 
     const inputRef = useRef(null);
 
     const [show, setShow] = useState(false);
 
     const [state, setState] = useSetState({
-        values:{id:'', name:'', code:'', invoice:'', job:'', machineNo:'', balance:''}
+        values:{id:'', name:'', code:'', invoice:'', job:'', machineNo:'', balance:'', ClientId:''}
     })
     
     useEffect(() => {
+        console.log(editValues)
         setState({
             id:editValues.id,
             name:editValues.name,
@@ -23,7 +24,8 @@ const Edit = ({editValues, updateOrder}) => {
             invoice:editValues.invoice,
             job:editValues.job,
             machineNo:editValues.machineNo,
-            balance:editValues.balance
+            balance:editValues.balance,
+            ClientId:editValues.ClientId
         });
     }, [editValues])
     
@@ -45,6 +47,7 @@ const Edit = ({editValues, updateOrder}) => {
             job:state.job,
             machineNo:state.machineNo,
             balance:state.balance,
+            ClientId:state.ClientId,
             code:await generateBarcode()
           }).then((x)=>{
             if(x.data.res=="success"){
@@ -57,9 +60,10 @@ const Edit = ({editValues, updateOrder}) => {
                     balance:state.balance,
                     code:state.job+'|'+state.invoice,
                     status:'pending',
+                    ClientId:state.ClientId,
                     active:1
                 })
-              }
+            }
           })
       };
   return (
@@ -68,6 +72,22 @@ const Edit = ({editValues, updateOrder}) => {
             <Col md={6} xs={12}>
                 <Form onSubmit={handleSubmit}>
                 <div className='m-3'>
+                <span className='heading-font'>Client :</span>
+                <span className='heading-font-thin' style={{float:'right'}}>
+                <Form.Select style={{width:208}}
+                    required value={state.ClientId} onChange={(e)=>setState({ClientId:e.target.value})}
+                    >
+                    <option selected>---select---</option>
+                    {
+                        clientData.result.map((x, index)=>{
+                        return(
+                            <option key={index} value={x.id}>{x.name}</option>
+                        )
+                        })
+                    }
+                    </Form.Select>
+                </span>
+                <hr/>
                 <span className='heading-font'>Name :</span>
                 <span className='heading-font-thin' style={{float:'right'}}>
                     <Form.Control type="text" required value={state.name} onChange={(e)=>setState({name:e.target.value})} />

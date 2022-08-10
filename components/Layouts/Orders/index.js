@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from 'react'
-import { Container, Row, Col, Table } from 'react-bootstrap'
-import { AiFillDelete, AiFillEye, AiFillEdit, AiOutlineExclamationCircle, AiOutlineFileDone } from 'react-icons/ai'
-import { FaClipboardList } from 'react-icons/fa'
+import React, { useEffect, useState } from 'react';
+import { Container, Row, Col, Table } from 'react-bootstrap';
+import { AiFillDelete, AiFillEye, AiFillEdit, AiOutlineExclamationCircle, AiOutlineFileDone } from 'react-icons/ai';
+import { FaClipboardList } from 'react-icons/fa';
 
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { Modal } from 'antd';
 
-import { RiEBike2Line } from 'react-icons/ri'
+import { RiEBike2Line } from 'react-icons/ri';
 
 import ShowInfo from './ShowInfo';
 import CreateNewOrder from './CreateNewOrder';
 import Edit from './Edit';
 
-import aos from 'aos'
-import 'aos/dist/aos.css'
+import aos from 'aos';
+import 'aos/dist/aos.css';
 import FileUpload from './FileUpload';
 
-const Orders = ({orderData}) => {
+const Orders = ({orderData, clientData}) => {
 
     const { confirm } = Modal;
     const [ orderList, setOrderList ] = useState([]);
@@ -31,6 +31,7 @@ const Orders = ({orderData}) => {
     useEffect(()=>{
         setOrderList(orderData);
         aos.init({duration:500});
+        console.log(clientData);
     }, []);
 
     const showConfirm = () => {
@@ -176,7 +177,7 @@ const Orders = ({orderData}) => {
             width={1000}
             footer={false}
         >
-            <CreateNewOrder func={appendOrder} />
+            <CreateNewOrder func={appendOrder} clientData={clientData} />
         </Modal>
         {/* Modal For Editing Records */}
         <Modal
@@ -186,7 +187,7 @@ const Orders = ({orderData}) => {
             width={1000}
             footer={false}
         >
-            {editVisible && <Edit editValues={editValues} updateOrder={updateOrder} />}
+            {editVisible && <Edit editValues={editValues} updateOrder={updateOrder} clientData={clientData} />}
         </Modal>
         {/* Modal For Uploading File */}
         <Modal
