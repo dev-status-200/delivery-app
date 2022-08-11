@@ -26,9 +26,9 @@ const CreateNewOrder = (props) => {
 
     const generateBarcode = () => {
         let value = '';
-        if(job!='' & invoice!=''){
-          value=job+'|'+invoice;
-          setCode(job+'|'+invoice);
+        if(invoice!=''){
+          value='JI-'+invoice;
+          setCode('JI-'+invoice);
           setShow(true);
         }
         return value
@@ -38,12 +38,11 @@ const CreateNewOrder = (props) => {
       setLoad(true);
       e.preventDefault()
       await axios.post(process.env.NEXT_PUBLIC_DELIVERY_APP_CREATE_ORDER_POST,{
-        name:name,
-        invoice:invoice,
+        invoice:'JI-'+invoice,
         job:job,
         machineNo:machineNo,
           balance:balance,
-          code:job+'|'+invoice,
+          code:'JI-'+invoice,
           clientId:client
         }).then((x)=>{
           if(x.data.res=="success"){
@@ -79,18 +78,11 @@ const CreateNewOrder = (props) => {
                   {
                     props.clientData.result.map((x, index)=>{
                       return(
-                        <option key={index} value={x.id}>{x.name}</option>
+                        <option key={index} value={x.id}>{x.name}{" "}</option>
                       )
                     })
                   }
                 </Form.Select>
-                </div>
-              </Col>
-              <Col md={5} xs={4}><div className='heading-font'>Name :</div></Col>
-              <Col md={1} xs={2} style={{padding:'6px 0px 0px 20px'}}></Col>
-              <Col md={6} xs={6}>
-                <div className='heading-font-thin'>
-                <Form.Control type="text" required value={name} onChange={(e)=>setName(e.target.value)} />
                 </div>
               </Col>
               <Col md={5} xs={4}><div className='heading-font'>Invoice No :</div></Col>

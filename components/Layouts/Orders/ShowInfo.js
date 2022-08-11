@@ -15,14 +15,11 @@ const ShowInfo = ({view}) => {
         <Row className='mt-4'>
             <Col md={6} xs={12}>
                 <div className='m-3'>
-                <span className='heading-font'>Name :</span>
-                <span className='heading-font-thin' style={{float:'right'}}>{view.name}</span>
-                <hr/>
                 <span className='heading-font'>	Invoice No :</span>
                 <span className='heading-font-thin' style={{float:'right'}}>{view.invoice}</span>
                 <hr/>
                 <span className='heading-font'>Job No :</span>
-                <span className='heading-font-thin' style={{float:'right'}}>{view.job}</span>
+                <span className='heading-font-thin' style={{float:'right'}}>JL-{view.job}</span>
                 <hr/>
                 <span className='heading-font'>Machine No :</span>
                 <span className='heading-font-thin' style={{float:'right'}}>{view.machineNo}</span>
@@ -38,9 +35,9 @@ const ShowInfo = ({view}) => {
             </div>
             <div className='d-flex my-3 align-items-center justify-content-center'>
                 <ReactToPrint
-                        content={() =>inputRef}
-                        trigger={() => <button className="btn btn-dark btn-sm mt-1">Print to PDF!</button>}
-                    />
+                    content={() =>inputRef}
+                    trigger={() => <button className="btn btn-dark btn-sm mt-1">Print to PDF!</button>}
+                />
             </div>
             </Col>
         </Row>

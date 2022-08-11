@@ -28,10 +28,20 @@ const Orders = ({orderData, clientData}) => {
     const [view, setView] = useState({})
     const [editValues, setEditValues] = useState({})
 
+      const getClientName = (ids) => {
+        console.log(clientData)
+        let values = ''
+        for(let i = 0; i<clientData.result.length;i++){
+            if(clientData.result[i].id==ids){
+                values = clientData.result[i].name
+            }
+        }
+        return values;
+    }
+
     useEffect(()=>{
         setOrderList(orderData);
         aos.init({duration:500});
-        console.log(clientData);
     }, []);
 
     const showConfirm = () => {
@@ -98,62 +108,62 @@ const Orders = ({orderData, clientData}) => {
                 <tbody className='small-font vertical-center-table'>
                 {
                 orderList.map((order, index)=>{
-            return(
-            <tr key={index}>
-                <td>{index+1}</td>
-                <td>{order.name}</td>
-                <td>JI-{order.invoice}</td>
-                <td>JI-{order.job}</td>
-                <td>{order.machineNo}</td>
-                <td>{order.balance}</td>
-                <td>
-                    {order.status=='pending'&& 
-                        <>
-                            <span><AiOutlineExclamationCircle className='pending-icon' /></span>
-                            <span className='mx-1 pending-text'>Pending</span>
-                        </>
-                    }
-                    {order.status=='pipeline'&& 
-                        <>
-                            <span><RiEBike2Line className='pipeline-icon' /></span>
-                            <span className='mx-1 pipeline-text'>On The Way!</span>
-                        </>
-                    }
-                    {order.status=='complete'&& 
-                        <>
-                            <span><AiOutlineFileDone className='complete-icon' /></span>
-                            <span className='mx-1 complete-text'>Completed!</span>
-                        </>
-                    }
-                </td>
-                <td>{order.code}</td>
-                <td>
-                <p style={{whiteSpace:'nowrap'}}>
-                <span>
-                <AiFillEye className='view-icon'
-                    onClick={()=>{
-                        setView(order); setViewVisible(true);
-                }} />
-                </span>
-                    <span className='vertical-seperator'> | </span>
-                <span>
-                <AiFillEdit className='edit-icon' onClick={()=>{
-                    if(order.status=='pending'){
-                        setEditValues(order);
-                        setEditVisible(true);
-                    }else{
-                        alert('Live Orders cannot be changed');
-                    }
-                }} />
-                </span>
-                    <span className='vertical-seperator'> | </span>
-                <span><AiFillDelete className='delete-icon' onClick={showConfirm}/></span>
-                </p>
-                </td>
-            </tr>
-                )
-              })
-            }
+                    return(
+                    <tr key={index}>
+                        <td>{index+1}</td>
+                        <td>{getClientName(order.ClientId)}</td>
+                        <td>{order.invoice}</td>
+                        <td>JL-{order.job}</td>
+                        <td>{order.machineNo}</td>
+                        <td>{order.balance}</td>
+                        <td>
+                            {order.status=='pending'&& 
+                                <>
+                                    <span><AiOutlineExclamationCircle className='pending-icon' /></span>
+                                    <span className='mx-1 pending-text'>Pending</span>
+                                </>
+                            }
+                            {order.status=='pipeline'&& 
+                                <>
+                                    <span><RiEBike2Line className='pipeline-icon' /></span>
+                                    <span className='mx-1 pipeline-text'>On The Way!</span>
+                                </>
+                            }
+                            {order.status=='complete'&& 
+                                <>
+                                    <span><AiOutlineFileDone className='complete-icon' /></span>
+                                    <span className='mx-1 complete-text'>Completed!</span>
+                                </>
+                            }
+                        </td>
+                        <td>{order.code}</td>
+                        <td>
+                        <p style={{whiteSpace:'nowrap'}}>
+                        <span>
+                        <AiFillEye className='view-icon'
+                            onClick={()=>{
+                                setView(order); setViewVisible(true);
+                        }} />
+                        </span>
+                            <span className='vertical-seperator'> | </span>
+                        <span>
+                        <AiFillEdit className='edit-icon' onClick={()=>{
+                            if(order.status=='pending'){
+                                setEditValues(order);
+                                setEditVisible(true);
+                            }else{
+                                alert('Live Orders cannot be changed');
+                            }
+                        }} />
+                        </span>
+                            <span className='vertical-seperator'> | </span>
+                        <span><AiFillDelete className='delete-icon' onClick={showConfirm}/></span>
+                        </p>
+                        </td>
+                    </tr>
+                    )
+                  })
+                }
             </tbody>
             </Table>
             </div>

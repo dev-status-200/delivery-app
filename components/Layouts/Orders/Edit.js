@@ -8,32 +8,31 @@ import { useSetState } from 'react-use';
 const Edit = ({editValues, updateOrder, clientData}) => {
 
     const inputRef = useRef(null);
-
     const [show, setShow] = useState(false);
 
     const [state, setState] = useSetState({
-        values:{id:'', name:'', code:'', invoice:'', job:'', machineNo:'', balance:'', ClientId:''}
+        values:{id:'', code:'', invoice:'', job:'', machineNo:'', balance:'', ClientId:''}
     })
-    
+
     useEffect(() => {
         console.log(editValues)
         setState({
             id:editValues.id,
-            name:editValues.name,
             code:editValues.code,
-            invoice:editValues.invoice,
+            invoice:editValues.invoice.slice(3),
             job:editValues.job,
             machineNo:editValues.machineNo,
             balance:editValues.balance,
             ClientId:editValues.ClientId
         });
+
     }, [editValues])
     
     const generateBarcode = () => {
         let value = '';
         if(state.job!='' & state.invoice!=''){
-          value=state.job+'|'+state.invoice;
-          setState({code:state.job+'|'+state.invoice});
+          value='JI-'+state.invoice;
+          setState({code:'JI-'+state.invoice});
           setShow(true);
         }
         return value
@@ -42,8 +41,7 @@ const Edit = ({editValues, updateOrder, clientData}) => {
         e.preventDefault();
           await axios.put(process.env.NEXT_PUBLIC_DELIVERY_APP_EDIT_ORDER_PUT,{
             id:state.id,
-            name:state.name,
-            invoice:state.invoice,
+            invoice:'JI-'+state.invoice,
             job:state.job,
             machineNo:state.machineNo,
             balance:state.balance,
@@ -53,12 +51,11 @@ const Edit = ({editValues, updateOrder, clientData}) => {
             if(x.data.res=="success"){
                 updateOrder({
                     id:state.id,
-                    name:state.name,
-                    invoice:state.invoice,
+                    invoice:'JI-'+state.invoice,
                     job:state.job,
                     machineNo:state.machineNo,
                     balance:state.balance,
-                    code:state.job+'|'+state.invoice,
+                    code:'JI-'+state.invoice,
                     status:'pending',
                     ClientId:state.ClientId,
                     active:1
@@ -66,6 +63,7 @@ const Edit = ({editValues, updateOrder, clientData}) => {
             }
           })
       };
+
   return (
     <div>
         <Row className='mt-4'>
@@ -87,11 +85,7 @@ const Edit = ({editValues, updateOrder, clientData}) => {
                     }
                     </Form.Select>
                 </span>
-                <hr/>
-                <span className='heading-font'>Name :</span>
-                <span className='heading-font-thin' style={{float:'right'}}>
-                    <Form.Control type="text" required value={state.name} onChange={(e)=>setState({name:e.target.value})} />
-                </span>
+                
                 <hr/>
                 <span className='heading-font'>	Invoice No :</span>
                 <span className='heading-font-thin' style={{float:'right'}}>
