@@ -54,7 +54,7 @@ const FileUpload = ({clientData, setBulkOrders}) => {
           }
       }
       return values;
-  }
+    }
 
     const getClients = (data) => {
       let newData = [];
