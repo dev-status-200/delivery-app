@@ -20,7 +20,7 @@ const Edit = ({editValues, updateOrder, clientData}) => {
             id:editValues.id,
             code:editValues.code,
             invoice:editValues.invoice.slice(3),
-            job:editValues.job,
+            job:editValues.job.slice(3),
             machineNo:editValues.machineNo,
             balance:editValues.balance,
             ClientId:editValues.ClientId
@@ -42,7 +42,7 @@ const Edit = ({editValues, updateOrder, clientData}) => {
           await axios.put(process.env.NEXT_PUBLIC_DELIVERY_APP_EDIT_ORDER_PUT,{
             id:state.id,
             invoice:'JI-'+state.invoice,
-            job:state.job,
+            job:'JL-'+state.job,
             machineNo:state.machineNo,
             balance:state.balance,
             ClientId:state.ClientId,
@@ -52,7 +52,7 @@ const Edit = ({editValues, updateOrder, clientData}) => {
                 updateOrder({
                     id:state.id,
                     invoice:'JI-'+state.invoice,
-                    job:state.job,
+                    job:'JL-'+state.job,
                     machineNo:state.machineNo,
                     balance:state.balance,
                     code:'JI-'+state.invoice,

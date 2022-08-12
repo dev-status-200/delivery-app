@@ -1,15 +1,23 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ReactToPrint from 'react-to-print';
 import * as XLSX from "xlsx";
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Spinner } from 'react-bootstrap';
 import Barcode from 'react-barcode';
+import axios from 'axios';
 
-const FileUpload = () => {
+const FileUpload = ({clientData, setBulkOrders}) => {
 
     const inputRef = useRef(null);
+    const [uploadFileDate, setUploadFileDate] = useState([]);
     const [fileData, setFileData] = useState([]);
-
     const [excelFile, setExcelFile] = useState([]);
+
+    const [load, setLoad] = useState(false)
+
+    useEffect(() => {
+      console.log(clientData)
+    }, [])
+    
 
     useEffect(() => {
         if(excelFile.length==0){
@@ -18,6 +26,8 @@ const FileUpload = () => {
     }, [excelFile]);
 
     const reader = async(fliez) => {
+
+      setLoad(true)
         const [file] = fliez;
         const reader = new FileReader();
     
@@ -34,6 +44,17 @@ const FileUpload = () => {
         };
         reader.readAsBinaryString(file);
     };
+
+    const getClientId = (name) => {
+      console.log(clientData)
+      let values = ''
+      for(let i = 0; i<clientData.result.length;i++){
+          if(clientData.result[i].name==name){
+              values = clientData.result[i].id
+          }
+      }
+      return values;
+  }
 
     const getClients = (data) => {
       let newData = [];
@@ -55,8 +76,36 @@ const FileUpload = () => {
           }
         } 
       }
-      console.log(newData)
+      console.log(newData);
+
+      let uploadData = [];
+
+      newData.forEach((x) => {
+        uploadData.push({
+          invoice:x.Invoice,
+          job:x.Job,
+          machineNo:x.GD,
+          balance:x.Amount,
+          code:x.Invoice,
+          status:'pending',
+          active:1,
+          ClientId:getClientId(x.Client)
+        })
+      });
       setFileData(newData);
+      uploadBulkData(uploadData)
+    }
+
+    const uploadBulkData = async(uploadData) => {
+      console.log('Bulk Upload')
+      await axios.post(process.env.NEXT_PUBLIC_DELIVERY_APP_CREATE_BULK_ORDERS_POST,{
+        data:uploadData
+      }).then((x)=>{
+        if(x.data.status=='success'){
+          setLoad(false);
+          setBulkOrders(x.data.result)
+        }
+      })
     }
 
   return (
@@ -71,10 +120,13 @@ const FileUpload = () => {
             }
           }} 
           files={excelFile} /><br/>
-      <ReactToPrint
-        content={() =>inputRef}
-        trigger={() => <button className="purple-btn mt-3">Print to PDF!</button>}
-        />
+        <ReactToPrint
+          content={() =>inputRef}
+          trigger={() => <button className="purple-btn mt-3" disabled={load?true:false}>
+              {load?<Spinner className='mx-4' animation="border" size="sm" />:'Print to PDF!'}
+            </button>}
+          />
+        {/* <button className="purple-btn mt-3 mx-2" onClick={uploadBulkData}>Save Files</button> */}
         </div>
       </div>
       <div className='my-5' ref={(response) => (inputRef = response)}>
@@ -83,6 +135,8 @@ const FileUpload = () => {
             fileData.map((x,i)=>{
                 return(
                     <div className='mx-3' key={i} style={{display:'inline-block', width:230}}>
+                      {!load &&
+                      <>
                         <h5 style={{maxWidth:250}}>{x.Client}</h5>
                         <div style={{fontSize:13}}>
                             <span>{"("}{x.Invoice}{")"} </span>
@@ -92,6 +146,7 @@ const FileUpload = () => {
                         <div>Rs.{" "}{x.Amount}</div>
                         <Barcode value={`${x.Invoice}`} />
                         <hr/>
+                      </>}
                     </div>
                   )
                 }

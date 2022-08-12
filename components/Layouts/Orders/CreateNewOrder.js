@@ -39,7 +39,7 @@ const CreateNewOrder = (props) => {
       e.preventDefault()
       await axios.post(process.env.NEXT_PUBLIC_DELIVERY_APP_CREATE_ORDER_POST,{
         invoice:'JI-'+invoice,
-        job:job,
+        job:'JL-'+job,
         machineNo:machineNo,
           balance:balance,
           code:'JI-'+invoice,

@@ -19,7 +19,7 @@ const ShowInfo = ({view}) => {
                 <span className='heading-font-thin' style={{float:'right'}}>{view.invoice}</span>
                 <hr/>
                 <span className='heading-font'>Job No :</span>
-                <span className='heading-font-thin' style={{float:'right'}}>JL-{view.job}</span>
+                <span className='heading-font-thin' style={{float:'right'}}>{view.job}</span>
                 <hr/>
                 <span className='heading-font'>Machine No :</span>
                 <span className='heading-font-thin' style={{float:'right'}}>{view.machineNo}</span>

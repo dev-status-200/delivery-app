@@ -28,8 +28,9 @@ const Orders = ({orderData, clientData}) => {
     const [view, setView] = useState({})
     const [editValues, setEditValues] = useState({})
 
+    const [bulkOrders, setBulkOrders] = useState([])
+
       const getClientName = (ids) => {
-        console.log(clientData)
         let values = ''
         for(let i = 0; i<clientData.result.length;i++){
             if(clientData.result[i].id==ids){
@@ -69,6 +70,18 @@ const Orders = ({orderData, clientData}) => {
         tempState[i] = x;
         setOrderList(tempState);
     }
+
+    useEffect(() => {
+      if(bulkOrders.length>0){
+          let tempState = [...orderList];
+          tempState.unshift(...bulkOrders);
+          console.log(tempState)
+          setOrderList(tempState);
+          setBulkOrders([])
+        }
+    }, [bulkOrders])
+    
+
   return (
     <div className='layout'  style={{paddingTop:20}}>
         <Container className='py-5' data-aos="fade-in">
@@ -113,7 +126,7 @@ const Orders = ({orderData, clientData}) => {
                         <td>{index+1}</td>
                         <td>{getClientName(order.ClientId)}</td>
                         <td>{order.invoice}</td>
-                        <td>JL-{order.job}</td>
+                        <td>{order.job}</td>
                         <td>{order.machineNo}</td>
                         <td>{order.balance}</td>
                         <td>
@@ -207,7 +220,7 @@ const Orders = ({orderData, clientData}) => {
             width={1000}
             footer={false}
         >
-            {fileVisible && <FileUpload/>}
+            {fileVisible && <FileUpload clientData={clientData} setBulkOrders={setBulkOrders} />}
         </Modal>
     </div>
   )
