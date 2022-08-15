@@ -69,7 +69,7 @@ const Clients = ({clientData}) => {
                 >Create New</button>
             </Col>
             </Row>
-            <div className='box my-3 p-4'>
+            <div className='box my-3 p-4' style={{maxHeight:'70vh', overflowY:'auto'}}>
             <Table responsive>
                 <thead className='medium-font' style={{whiteSpace:'nowrap'}}>
                     <tr>

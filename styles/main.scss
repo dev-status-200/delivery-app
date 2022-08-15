@@ -217,3 +217,25 @@ body > div > div > div.ant-modal-wrap > div > div.ant-modal-content > div > div 
     top:40%;
     left: 48%;
   }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 8px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 25px;
+    
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
