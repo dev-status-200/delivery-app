@@ -18,7 +18,7 @@ const CreateNewClient = (props) => {
         setLoad(true)
         e.preventDefault()
         await axios.post(process.env.NEXT_PUBLIC_DELIVERY_APP_CREATE_CLIENT_POST,{
-          name:name,
+          name:name.trim(),
           email:email,
           contact:contact,
           address:address,

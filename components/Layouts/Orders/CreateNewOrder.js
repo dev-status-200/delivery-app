@@ -38,6 +38,7 @@ const CreateNewOrder = (props) => {
       setLoad(true);
       e.preventDefault()
       await axios.post(process.env.NEXT_PUBLIC_DELIVERY_APP_CREATE_ORDER_POST,{
+        name:name,
         invoice:'JI-'+invoice,
         job:'JL-'+job,
         machineNo:machineNo,
@@ -71,18 +72,7 @@ const CreateNewOrder = (props) => {
               <Col md={1} xs={2} style={{padding:'6px 0px 0px 20px'}}></Col>
               <Col md={6} xs={6}>
                 <div className='heading-font-thin'>
-                <Form.Select aria-label="Default select example" 
-                  required value={client} onChange={(e)=>setClient(e.target.value)}
-                >
-                  <option selected>---select---</option>
-                  {
-                    props.clientData.result.map((x, index)=>{
-                      return(
-                        <option key={index} value={x.id}>{x.name}{" "}</option>
-                      )
-                    })
-                  }
-                </Form.Select>
+                  <Form.Control type="text" required value={name} onChange={(e)=>setName(e.target.value)} />
                 </div>
               </Col>
               <Col md={5} xs={4}><div className='heading-font'>Invoice No :</div></Col>

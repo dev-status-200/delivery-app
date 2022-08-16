@@ -15,11 +15,6 @@ const FileUpload = ({clientData, setBulkOrders}) => {
     const [load, setLoad] = useState(false)
 
     useEffect(() => {
-      console.log(clientData)
-    }, [])
-    
-
-    useEffect(() => {
         if(excelFile.length==0){
           setFileData([])
         }
@@ -46,7 +41,7 @@ const FileUpload = ({clientData, setBulkOrders}) => {
     };
 
     const getClientId = (name) => {
-      console.log(clientData)
+      //console.log(clientData)
       let values = ''
       for(let i = 0; i<clientData.result.length;i++){
           if(clientData.result[i].name==name){
@@ -57,46 +52,69 @@ const FileUpload = ({clientData, setBulkOrders}) => {
     }
 
     const getClients = (data) => {
-      let newData = [];
-      let count = 0;
-
-      for(let i=0; i<data.length; i++){
-        if(i==0){
-          newData.push(data[i]);
-        }
-        for(let j=count; j<newData.length; j++){
-          if(i!=0){
-            if(newData[j].Client!=data[i].Client){
-              newData.push(data[i]);
-              count++;
-              break;
-            }else{
-              newData[j].Amount = newData[j].Amount+ data[i].Amount
-            }
-          }
-        } 
-      }
-      console.log(newData);
 
       let uploadData = [];
 
-      newData.forEach((x) => {
+      data.forEach((x) => {
         uploadData.push({
           invoice:x.Invoice,
+          name:x.Client,
           job:x.Job,
           machineNo:x.GD,
           balance:x.Amount,
           code:x.Invoice,
           status:'pending',
-          active:1,
-          ClientId:getClientId(x.Client)
+          active:1
         })
       });
-      setFileData(newData);
+      setFileData(data);
+      //console.log(uploadData)
       uploadBulkData(uploadData)
     }
 
+    // const getClients = (data) => {
+    //   let newData = [];
+    //   let count = 0;
+
+    //   for(let i=0; i<data.length; i++){
+    //     if(i==0){
+    //       newData.push(data[i]);
+    //     }
+    //     for(let j=count; j<newData.length; j++){
+    //       if(i!=0){
+    //         if(newData[j].Client!=data[i].Client){
+    //           newData.push(data[i]);
+    //           count++;
+    //           break;
+    //         }else{
+    //           newData[j].Amount = newData[j].Amount+ data[i].Amount
+    //         }
+    //       }
+    //     } 
+    //   }
+    //   //console.log(newData);
+
+    //   let uploadData = [];
+
+    //   newData.forEach((x) => {
+    //     uploadData.push({
+    //       invoice:x.Invoice,
+    //       job:x.Job,
+    //       machineNo:x.GD,
+    //       balance:x.Amount,
+    //       code:x.Invoice,
+    //       status:'pending',
+    //       active:1,
+    //       ClientId:getClientId(x.Client)
+    //     })
+    //   });
+    //   setFileData(newData);
+    //   setLoad(false);
+    //   //uploadBulkData(uploadData)
+    // }
+
     const uploadBulkData = async(uploadData) => {
+      console.log(uploadData)
       console.log('Bulk Upload')
       await axios.post(process.env.NEXT_PUBLIC_DELIVERY_APP_CREATE_BULK_ORDERS_POST,{
         data:uploadData

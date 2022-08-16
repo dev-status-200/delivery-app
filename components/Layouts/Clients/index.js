@@ -21,6 +21,7 @@ const Clients = ({clientData}) => {
     useEffect(()=>{
         aos.init({duration:500});
         setClientList(clientData.result)
+        console.log(clientData)
     }, []);
 
     const updateOrder = (x) => {

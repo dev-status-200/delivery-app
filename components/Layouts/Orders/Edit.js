@@ -11,13 +11,14 @@ const Edit = ({editValues, updateOrder, clientData}) => {
     const [show, setShow] = useState(false);
 
     const [state, setState] = useSetState({
-        values:{id:'', code:'', invoice:'', job:'', machineNo:'', balance:'', ClientId:''}
+        values:{id:'', name:'', code:'', invoice:'', job:'', machineNo:'', balance:'', ClientId:''}
     })
 
     useEffect(() => {
         console.log(editValues)
         setState({
             id:editValues.id,
+            name:editValues.name,
             code:editValues.code,
             invoice:editValues.invoice.slice(3),
             job:editValues.job.slice(3),
@@ -41,6 +42,7 @@ const Edit = ({editValues, updateOrder, clientData}) => {
         e.preventDefault();
           await axios.put(process.env.NEXT_PUBLIC_DELIVERY_APP_EDIT_ORDER_PUT,{
             id:state.id,
+            name:state.name,
             invoice:'JI-'+state.invoice,
             job:'JL-'+state.job,
             machineNo:state.machineNo,
@@ -51,6 +53,7 @@ const Edit = ({editValues, updateOrder, clientData}) => {
             if(x.data.res=="success"){
                 updateOrder({
                     id:state.id,
+                    name:state.name,
                     invoice:'JI-'+state.invoice,
                     job:'JL-'+state.job,
                     machineNo:state.machineNo,
@@ -72,18 +75,7 @@ const Edit = ({editValues, updateOrder, clientData}) => {
                 <div className='m-3'>
                 <span className='heading-font'>Client :</span>
                 <span className='heading-font-thin' style={{float:'right'}}>
-                <Form.Select style={{width:208}}
-                    required value={state.ClientId} onChange={(e)=>setState({ClientId:e.target.value})}
-                    >
-                    <option selected>---select---</option>
-                    {
-                        clientData.result.map((x, index)=>{
-                        return(
-                            <option key={index} value={x.id}>{x.name}</option>
-                        )
-                        })
-                    }
-                    </Form.Select>
+                    <Form.Control type="text" required value={state.name} onChange={(e)=>setState({name:e.target.value})} />
                 </span>
                 
                 <hr/>

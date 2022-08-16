@@ -124,7 +124,7 @@ const Orders = ({orderData, clientData}) => {
                     return(
                     <tr key={index}>
                         <td>{index+1}</td>
-                        <td>{getClientName(order.ClientId)}</td>
+                        <td>{order.name}</td>
                         <td>{order.invoice}</td>
                         <td>{order.job}</td>
                         <td>{order.machineNo}</td>
